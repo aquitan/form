@@ -1,3 +1,4 @@
+import { ErrorMessage } from '@hookform/error-message'
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { SimpleContext } from '../../../context'
@@ -31,7 +32,7 @@ const Form = () => {
             <h4>Form</h4>
             <form className='form' onSubmit={handleSubmit(onFormSubmit)}>
                 <Input {...register('cryptoOne', {
-                    required: true,
+                    required: 'This value is required!',
                     minLength: {
                         value: 44,
                         message: 'Min value is 44 characters'
@@ -42,8 +43,22 @@ const Form = () => {
                     }
                     
                     })} placeholder='Crypto One' type='text' />
+                    <ErrorMessage name='cryptoOne' errors={errors} render={({message}) => <p>{message}</p>} />
+                    
 
-                <Input {...register('cryptoTwo', {required: true})} placeholder='Crypto Two' type='text' />
+                <Input {...register('cryptoTwo', {
+                    required: 'This value is required!',
+                    minLength: {
+                        value: 44,
+                        message: 'Min value is 44 characters'
+                    },
+                    maxLength: {
+                        value: 49,
+                        message: 'Max value is 49 characters'
+                    }
+                })} placeholder='Crypto Two' type='text' />
+                <ErrorMessage name='cryptoTwo' errors={errors} render={({message}) => <p>{message}</p>} />
+
                 {
                     isChecked ?
                     <Input {...register('cryptoEmail')} placeholder='Email' type='email' />
