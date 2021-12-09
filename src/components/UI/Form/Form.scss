@@ -1,0 +1,15 @@
+.form-wrap {
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .2);
+    width: 100%;
+}
+p {
+    color: #bf1650;
+  }
+
+p::before {
+    display: inline;
+    content: "⚠ ";
+  }
