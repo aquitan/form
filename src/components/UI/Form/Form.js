@@ -8,18 +8,22 @@ import './Form.scss'
 
 const Form = () => {
     const {isChecked, setIsChecked} = useContext(SimpleContext)
+    const {setIsSuccess, setIsModal} = useContext(SimpleContext)
     const {register, handleSubmit, formState: {errors}} = useForm()
 
     const onFormSubmit = (data) => {
         if (data.cryptoOne && data.cryptoTwo && !data.cryptoEmail) {
             console.log('checked')
             setIsChecked(true)
+            setIsSuccess(false)
         } else if (data.cryptoOne && data.cryptoTwo && data.cryptoEmail) {
             console.log(data)
             setIsChecked(false)
+            setIsSuccess(true)
             data.cryptoOne = ''
             data.cryptoTwo = ''
             data.cryptoEmail = ''
+            setIsModal(true)
         }
     }
     const checkInputs = (e) => {
